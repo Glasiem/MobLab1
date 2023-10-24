@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MatrixActivity">
 
     <Space
         android:id="@+id/topMargin"
@@ -80,7 +80,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText12"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/editText21"/>
+            app:layout_constraintBottom_toTopOf="@id/editText21"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText12"
@@ -92,7 +93,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText13"
             app:layout_constraintStart_toEndOf="@+id/editText11"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/editText22"/>
+            app:layout_constraintBottom_toTopOf="@id/editText22"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText13"
@@ -104,7 +106,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText14"
             app:layout_constraintStart_toEndOf="@+id/editText12"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/editText23"/>
+            app:layout_constraintBottom_toTopOf="@id/editText23"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText14"
@@ -116,7 +119,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/editText13"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/editText24"/>
+            app:layout_constraintBottom_toTopOf="@id/editText24"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText21"
@@ -128,7 +132,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText22"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editText11"
-            app:layout_constraintBottom_toTopOf="@id/editText31"/>
+            app:layout_constraintBottom_toTopOf="@id/editText31"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText22"
@@ -140,7 +145,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText23"
             app:layout_constraintStart_toEndOf="@+id/editText21"
             app:layout_constraintTop_toBottomOf="@id/editText12"
-            app:layout_constraintBottom_toTopOf="@id/editText32"/>
+            app:layout_constraintBottom_toTopOf="@id/editText32"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText23"
@@ -152,7 +158,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText24"
             app:layout_constraintStart_toEndOf="@+id/editText22"
             app:layout_constraintTop_toBottomOf="@id/editText13"
-            app:layout_constraintBottom_toTopOf="@id/editText33"/>
+            app:layout_constraintBottom_toTopOf="@id/editText33"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText24"
@@ -164,7 +171,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/editText23"
             app:layout_constraintTop_toBottomOf="@id/editText14"
-            app:layout_constraintBottom_toTopOf="@id/editText34"/>
+            app:layout_constraintBottom_toTopOf="@id/editText34"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText31"
@@ -176,7 +184,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText32"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editText21"
-            app:layout_constraintBottom_toTopOf="@id/editText41"/>
+            app:layout_constraintBottom_toTopOf="@id/editText41"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText32"
@@ -188,7 +197,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText33"
             app:layout_constraintStart_toEndOf="@+id/editText31"
             app:layout_constraintTop_toBottomOf="@id/editText22"
-            app:layout_constraintBottom_toTopOf="@id/editText42"/>
+            app:layout_constraintBottom_toTopOf="@id/editText42"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText33"
@@ -200,7 +210,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText34"
             app:layout_constraintStart_toEndOf="@+id/editText32"
             app:layout_constraintTop_toBottomOf="@id/editText23"
-            app:layout_constraintBottom_toTopOf="@id/editText43"/>
+            app:layout_constraintBottom_toTopOf="@id/editText43"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText34"
@@ -212,7 +223,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/editText33"
             app:layout_constraintTop_toBottomOf="@id/editText24"
-            app:layout_constraintBottom_toTopOf="@id/editText44"/>
+            app:layout_constraintBottom_toTopOf="@id/editText44"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText41"
@@ -224,7 +236,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText42"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editText31"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText42"
@@ -236,7 +249,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText43"
             app:layout_constraintStart_toEndOf="@+id/editText41"
             app:layout_constraintTop_toBottomOf="@id/editText32"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText43"
@@ -248,7 +262,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText44"
             app:layout_constraintStart_toEndOf="@+id/editText42"
             app:layout_constraintTop_toBottomOf="@id/editText33"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText44"
@@ -260,7 +275,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/editText43"
             app:layout_constraintTop_toBottomOf="@id/editText34"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:inputType="number"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -284,7 +300,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText12matrix2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/editText21matrix2"/>
+            app:layout_constraintBottom_toTopOf="@id/editText21matrix2"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText12matrix2"
@@ -296,7 +313,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText13matrix2"
             app:layout_constraintStart_toEndOf="@+id/editText11matrix2"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/editText22matrix2"/>
+            app:layout_constraintBottom_toTopOf="@id/editText22matrix2"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText13matrix2"
@@ -308,7 +326,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText14matrix2"
             app:layout_constraintStart_toEndOf="@+id/editText12matrix2"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/editText23matrix2"/>
+            app:layout_constraintBottom_toTopOf="@id/editText23matrix2"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText14matrix2"
@@ -320,7 +339,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/editText13matrix2"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/editText24matrix2"/>
+            app:layout_constraintBottom_toTopOf="@id/editText24matrix2"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText21matrix2"
@@ -332,7 +352,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText22matrix2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editText11matrix2"
-            app:layout_constraintBottom_toTopOf="@id/editText31matrix2"/>
+            app:layout_constraintBottom_toTopOf="@id/editText31matrix2"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText22matrix2"
@@ -344,7 +365,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText23matrix2"
             app:layout_constraintStart_toEndOf="@+id/editText21matrix2"
             app:layout_constraintTop_toBottomOf="@id/editText12matrix2"
-            app:layout_constraintBottom_toTopOf="@id/editText32matrix2"/>
+            app:layout_constraintBottom_toTopOf="@id/editText32matrix2"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText23matrix2"
@@ -356,7 +378,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText24matrix2"
             app:layout_constraintStart_toEndOf="@+id/editText22matrix2"
             app:layout_constraintTop_toBottomOf="@id/editText13matrix2"
-            app:layout_constraintBottom_toTopOf="@id/editText33matrix2"/>
+            app:layout_constraintBottom_toTopOf="@id/editText33matrix2"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText24matrix2"
@@ -368,7 +391,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/editText23matrix2"
             app:layout_constraintTop_toBottomOf="@id/editText14matrix2"
-            app:layout_constraintBottom_toTopOf="@id/editText34matrix2"/>
+            app:layout_constraintBottom_toTopOf="@id/editText34matrix2"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText31matrix2"
@@ -380,7 +404,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText32matrix2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editText21matrix2"
-            app:layout_constraintBottom_toTopOf="@id/editText41matrix2"/>
+            app:layout_constraintBottom_toTopOf="@id/editText41matrix2"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText32matrix2"
@@ -392,7 +417,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText33matrix2"
             app:layout_constraintStart_toEndOf="@+id/editText31matrix2"
             app:layout_constraintTop_toBottomOf="@id/editText22matrix2"
-            app:layout_constraintBottom_toTopOf="@id/editText42matrix2"/>
+            app:layout_constraintBottom_toTopOf="@id/editText42matrix2"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText33matrix2"
@@ -404,7 +430,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText34matrix2"
             app:layout_constraintStart_toEndOf="@+id/editText32matrix2"
             app:layout_constraintTop_toBottomOf="@id/editText23matrix2"
-            app:layout_constraintBottom_toTopOf="@id/editText43matrix2"/>
+            app:layout_constraintBottom_toTopOf="@id/editText43matrix2"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText34matrix2"
@@ -416,7 +443,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/editText33matrix2"
             app:layout_constraintTop_toBottomOf="@id/editText24matrix2"
-            app:layout_constraintBottom_toTopOf="@id/editText44matrix2"/>
+            app:layout_constraintBottom_toTopOf="@id/editText44matrix2"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText41matrix2"
@@ -428,7 +456,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText42matrix2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editText31matrix2"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText42matrix2"
@@ -440,7 +469,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText43matrix2"
             app:layout_constraintStart_toEndOf="@+id/editText41matrix2"
             app:layout_constraintTop_toBottomOf="@id/editText32matrix2"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText43matrix2"
@@ -452,7 +482,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText44matrix2"
             app:layout_constraintStart_toEndOf="@+id/editText42matrix2"
             app:layout_constraintTop_toBottomOf="@id/editText33matrix2"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/editText44matrix2"
@@ -464,7 +495,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/editText43matrix2"
             app:layout_constraintTop_toBottomOf="@id/editText34matrix2"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:inputType="number"
+            android:autofillHints="" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

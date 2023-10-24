@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,7 +17,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.OutputStreamWriter;
+
+public class MatrixActivity extends AppCompatActivity {
 
 
     private Spinner operatorSpinner;
@@ -23,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText[][] matrix2 = new EditText[4][4];
     private TextView resultTextView;
     private String selectedSize;
+    File file;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +44,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeViews() {
+        File directory = Environment.getExternalStorageDirectory();
+        file = new File(directory,"data");
+        if (!file.exists()) {
+            try {
+                if (Build.VERSION.SDK_INT >= 30){
+                    if (!Environment.isExternalStorageManager()){
+                        Intent getpermission = new Intent();
+                        getpermission.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                        startActivity(getpermission);
+                    }
+                }
+                file.createNewFile();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
         initializeMatrix();
         operatorSpinner = findViewById(R.id.spinnerOperator);
         sizeSpinner = findViewById(R.id.spinnerSize);
@@ -85,21 +111,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedSize = sizeSpinner.getSelectedItem().toString();
-                saveValue("size", selectedSize);
                 updateMatrixSize();
-                saveMatrix();
+                saveData();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                saveMatrix();
+                saveData();
             }
         });
         operatorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                saveValue("operator", operatorSpinner.getSelectedItem().toString());
-                saveMatrix();
+                saveData();
             }
 
             @Override
@@ -120,12 +144,12 @@ public class MainActivity extends AppCompatActivity {
         reverseMatrix2Button.setOnClickListener(v -> findInverseInterface(matrix2));
 
         Button calculateButton = findViewById(R.id.calculateButton);
-        calculateButton.setOnClickListener(v -> calculateResult());
+        calculateButton.setOnClickListener(v -> calculateMatrix());
 
         Button diagramsButton = findViewById(R.id.diagramsButton);
         diagramsButton.setOnClickListener(v -> {
-            saveMatrix();
-            Intent intent = new Intent(MainActivity.this, DiagramsActivity.class);
+            saveData();
+            Intent intent = new Intent(MatrixActivity.this, DiagramsActivity.class);
             int size = getSize();
             intent.putExtra("size", size);
             for (int i = 0; i < size; i++) {
@@ -143,8 +167,8 @@ public class MainActivity extends AppCompatActivity {
 
         Button navigateButton = findViewById(R.id.navigateButton);
         navigateButton.setOnClickListener(v -> {
-            saveMatrix();
-            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+            saveData();
+            Intent intent = new Intent(MatrixActivity.this, CardActivity.class);
             startActivity(intent);
         });
     }
@@ -154,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             String res = findInverse(matrix, n);
             resultTextView.setText(String.valueOf(res));
-            saveMatrix();
+            saveData();
         }
         catch (Exception e){
             resultTextView.setText("wrong input");
@@ -237,7 +261,7 @@ public class MainActivity extends AppCompatActivity {
         try {
         double res = findDeterminant(matrix, n);
         resultTextView.setText(String.valueOf(res));
-        saveMatrix();
+        saveData();
         }
         catch (Exception e){
             resultTextView.setText("wrong input");
@@ -301,61 +325,63 @@ public class MainActivity extends AppCompatActivity {
         return minor;
     }
     private void restoreSavedValues() {
-        String savedOperator = getSavedValue("operator");
-        if (savedOperator != null && !savedOperator.isEmpty()) {
-            int operatorPosition = ((ArrayAdapter<String>) operatorSpinner.getAdapter()).getPosition(savedOperator);
-            operatorSpinner.setSelection(operatorPosition);
-        }
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
 
-        String savedSize = getSavedValue("size");
-        if (savedSize != null && !savedSize.isEmpty()) {
-            int sizePosition = ((ArrayAdapter<String>) sizeSpinner.getAdapter()).getPosition(savedSize);
-            sizeSpinner.setSelection(sizePosition);
-            selectedSize = sizeSpinner.getSelectedItem().toString();
-            updateMatrixSize();
-        }
-        else {
-            sizeSpinner.setSelection(3);
-        }
-        matrixRestore();
-    }
+            int savedOperator = Integer.parseInt(br.readLine());
+            operatorSpinner.setSelection(savedOperator);
 
-    private void matrixRestore() {
-        int size = getSize()-1;
-        for (int i = 0; i <= size; i++) {
-            for (int j = 0; j <= size; j++) {
-                matrix1[i][j].setText(getSavedValue("matrix1editText" + i + j));
-                matrix2[i][j].setText(getSavedValue("matrix2editText" + i + j));
+            int savedSize = Integer.parseInt(br.readLine());
+            sizeSpinner.setSelection(savedSize);
+
+            for (int i = 0; i <= savedSize; i++) {
+                for (int j = 0; j <= savedSize; j++) {
+                    matrix1[i][j].setText(br.readLine());
+                }
             }
-        }
-    }
 
-    private String getSavedValue(String key) {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        return sharedPreferences.getString(key, "");
-    }
-
-    private void saveValue(String key, String value) {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(key, value);
-        editor.apply();
-    }
-
-    private void saveMatrix() {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        int size = ((ArrayAdapter<String>) sizeSpinner.getAdapter()).getPosition(sizeSpinner.getSelectedItem().toString());
-        for (int i = 0; i <= size; i++) {
-            for (int j = 0; j <= size; j++) {
-                editor.putString("matrix1editText" + i + j, matrix1[i][j].getText().toString());
-                editor.putString("matrix2editText" + i + j, matrix2[i][j].getText().toString());
+            for (int i = 0; i <= savedSize; i++) {
+                for (int j = 0; j <= savedSize; j++) {
+                    matrix2[i][j].setText(br.readLine());
+                }
             }
+
+            br.close();
+        } catch (Exception e) {
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         }
-        editor.apply();
     }
 
-    private void calculateResult() {
+
+    private void saveData() {
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            OutputStreamWriter osw = new OutputStreamWriter(fos);
+
+            osw.write(((ArrayAdapter<String>) operatorSpinner.getAdapter()).getPosition(operatorSpinner.getSelectedItem().toString()) + "\n");
+            int size = getSize();
+            osw.write( size + "\n");
+
+            for (int i = 0; i <= size; i++) {
+                for (int j = 0; j <= size; j++) {
+                    osw.write(matrix1[i][j].getText() + "\n");
+                }
+            }
+
+            for (int i = 0; i <= size; i++) {
+                for (int j = 0; j <= size; j++) {
+                    osw.write(matrix2[i][j].getText() + "\n");
+                }
+            }
+
+            osw.flush();
+            osw.close();
+            fos.close();
+        } catch (Exception e) {
+        }
+    }
+
+    private void calculateMatrix() {
         int n = getSize();
         String operator = operatorSpinner.getSelectedItem().toString();
         String res = "";
@@ -372,7 +398,7 @@ public class MainActivity extends AppCompatActivity {
                     result = multiplyMatrices();
                     break;
             }
-            saveMatrix();
+            saveData();
             res = matrixToString(n,result);
         } catch (Exception e) {
             res = "wrong input";
