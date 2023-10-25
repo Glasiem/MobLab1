@@ -359,7 +359,7 @@ public class MatrixActivity extends AppCompatActivity {
             OutputStreamWriter osw = new OutputStreamWriter(fos);
 
             osw.write(((ArrayAdapter<String>) operatorSpinner.getAdapter()).getPosition(operatorSpinner.getSelectedItem().toString()) + "\n");
-            int size = getSize();
+            int size = getSize()-1;
             osw.write( size + "\n");
 
             for (int i = 0; i <= size; i++) {
